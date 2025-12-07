@@ -87,12 +87,15 @@ public class App
 
         int trueFlag = 0;
        for (String id : ids) {
-            if (CaiMoGuHelp.actSore(id,caiMoGuToken)){
+           int s = CaiMoGuHelp.actSore(id, caiMoGuToken);
+           if (s==1){
                 trueFlag++;
                 acIds.add(id);
-                 log.error("评价成功 "+id);
-            }else{
-                log.error("评价失败 "+id);
+                log.error("评价成功 "+id);
+            }else if (s==0){
+
+               acIds.add(id);
+               log.error("重复评价 "+id);
             }
             if (trueFlag == 3) {
                 break;

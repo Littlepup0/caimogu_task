@@ -104,7 +104,7 @@ public class CaiMoGuHelp {
      * @param caiMoGuToken toKen
      * @return true 成功评分 没有评分
      */
-    public static boolean actSore(String id,String caiMoGuToken) {
+    public static int actSore(String id,String caiMoGuToken) {
         OkHttpClient client = OkHttpClientFactory.getInstance().getClient();
         FormBody formBody = new FormBody.Builder()
                 .add("id", id.toString())
@@ -116,7 +116,7 @@ public class CaiMoGuHelp {
                 .url("https://www.caimogu.cc/game/act/score") // 测试API，可替换为实际接口
                 .post(formBody)
                 .addHeader("Host","www.caimogu.cc")
-                .addHeader("Cookie","CAIMOGU="+caiMoGuToken+";")
+                .addHeader("Cookie",caiMoGuToken)
                 .build();
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful()) {
@@ -124,11 +124,14 @@ public class CaiMoGuHelp {
                 Integer status = jsonObject.getInteger("status");
                 String info = jsonObject.getString("info");
                 log.error(jsonObject.toJSONString());
-                return  status ==1&&info.isEmpty();
+                if ("请勿重复评分".equals(info)) {
+                    return 0;
+                }
+                return  status ==1&&info.isEmpty()?1:2;
             }
         } catch (Exception ignored) {
 
         }
-        return false;
+        return 2;
     }
 }
