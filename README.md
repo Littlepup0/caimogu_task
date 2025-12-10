@@ -1,10 +1,19 @@
-## fork仓库
+# 踩蘑菇每天6点影响力
 
-## 配置三个仓库参数
-- `OWNER_REPO` 用户名/仓库名
-- `CAI_MO_GU_TOKEN` 踩蘑菇的Token cmg_token
-- `MY_GITHUB_API_TOKEN` githubapiToken 需要读写权限
+## 配置方式
+1.  fork仓库
 
-## 删除文件
-  - run.txt
-  - acIds.txt
+2. 配置三个仓库参数
+   - `OWNER_REPO` 用户名/仓库名
+   - `CAI_MO_GU_TOKEN` 踩蘑菇的Token cmg_token
+   - `MY_GITHUB_API_TOKEN` githubapiToken 需要读写权限
+
+3. 删除文件
+   - run.txt     (记录上一次运行时间)
+   - acIds.txt   (记录已经评价的游戏)
+   - postIds.txt (记录已经评论的帖子)
+
+## 更新
+
+- 2025.12.10
+  - 帖子回复
